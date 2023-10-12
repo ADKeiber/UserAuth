@@ -13,9 +13,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 env:
-  DATA_PASSWORD: ${{ secrets.DATA_PASSWORD }}
   JWT_SECRET: ${{ secrets.JWT_SECRET }}
   SQL_SERVER: ${{ secrets.SQL_SERVER }}
+  DATA_PASSWORD: ${{ secrets.DATA_PASSWORD }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
