@@ -1,5 +1,5 @@
 jwt:
-  secret: ${env.JWT_SECRET}
+  secret: ${{env.JWT_SECRET}}
 
 spring:
   cloud:
@@ -13,7 +13,7 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: ${env.SQL_SERVER}
+    url: ${{env.SQL_SERVER}}
     username: debian-sys-maint
-    password: ${env.DATA_PASSWORD}
+    password: ${{env.DATA_PASSWORD}}
     driver-class-name: com.mysql.cj.jdbc.Driver
