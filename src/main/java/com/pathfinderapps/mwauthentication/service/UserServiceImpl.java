@@ -108,76 +108,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			log.error("User found but Incorrect password!");
 		}
 		else{
-//			String[] jwe = createJWEObject(access_token);
 			map.put("refresh_token",refresh_token);
 			map.put("access_token",access_token);
-//			map.put("access_token",jwe[0]);
-//			map.put("encrypted_JWE",jwe[0]);
-//			map.put("decrypted_JWE",jwe[1]);
-
 		}
 		return map;
 	}
-//	private String[] createJWEObject(String jwtPayload) throws NoSuchAlgorithmException, JOSEException, ParseException {
-//		// The JWE alg and enc
-//		JWEAlgorithm alg = JWEAlgorithm.A128KW;
-//		EncryptionMethod enc = EncryptionMethod.A128CBC_HS256;
-//
-//		// Generate an RSA key pair
-////		KeyPairGenerator rsaGen = KeyPairGenerator.getInstance("RSA");
-////		rsaGen.initialize(2048);
-////		KeyPair rsaKeyPair = rsaGen.generateKeyPair();
-////		RSAPublicKey rsaPublicKey = (RSAPublicKey)rsaKeyPair.getPublic();
-////		RSAPrivateKey rsaPrivateKey = (RSAPrivateKey)rsaKeyPair.getPrivate();
-//
-//		// Generate the Content Encryption Key (CEK)
-////		KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-////		keyGenerator.init(enc.cekBitLength());
-////		SecretKey cek = keyGenerator.generateKey();
-//
-//		// Encrypt the JWE with the RSA public key + specified AES CEK
-//		JWEObject jwe = new JWEObject(
-//				new JWEHeader(alg, enc),
-//				new Payload(jwtPayload));
-//		byte[] key = "!z%C*F-JaNdRgUkXn2r5u8x/A?D(G+Kb".getBytes();
-//		SecretKey cek = new SecretKeySpec(key, "AES");
-//		jwe.encrypt(new AESEncrypter(cek));
-//		String jweString = jwe.serialize();
-//
-//		String[] jweStuff = new String[2];
-//		jweStuff[0] = jweString;
-//		jwe = JWEObject.parse(jweString);
-////		jwe.decrypt(new RSADecrypter(rsaPrivateKey));
-//		jweStuff[1] = jwe.getPayload().toString();
-//		log.info(jweStuff[0] + jweStuff[1]);
-//		return jweStuff;
-//	}
-//
-//	private final String key = "065580b48e436926b2885a808babdfas";
-//	private byte[] keyValue;
-//	private final String ALGO = "AES";
-//	// The JWE alg and enc
-//	JWEAlgorithm alg = JWEAlgorithm.RSA_OAEP_256;
-//	EncryptionMethod enc = EncryptionMethod.A128CBC_HS256;
-//	private String encrypt(String jwt) throws Exception {
-//
-//		keyValue = key.getBytes();
-//
-//		Key key = new SecretKeySpec(keyValue, ALGO);
-//		Cipher c = Cipher.getInstance(ALGO);
-//		c.init(Cipher.ENCRYPT_MODE, key);
-//		byte[] encVal = c.doFinal(jwt.getBytes());
-//		String encryptedValue = Base64.getEncoder().encodeToString(encVal);
-//		return encryptedValue;
-//	}
-//
-//	private String decrypt(String encryptedData) throws Exception {
-//		Key key = new SecretKeySpec(keyValue, ALGO);
-//		Cipher c = Cipher.getInstance(ALGO);
-//		c.init(Cipher.DECRYPT_MODE, key);
-//		byte[] decodedValue = Base64.getDecoder().decode(encryptedData);
-//		byte[] decValue = c.doFinal(decodedValue);
-//		String decryptedValue = new String(decValue);
-//		return decryptedValue;
-//	}
 }

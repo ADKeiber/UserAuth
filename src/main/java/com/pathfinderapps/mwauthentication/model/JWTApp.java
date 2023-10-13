@@ -11,7 +11,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JWTApp {
-
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String refresh_token;

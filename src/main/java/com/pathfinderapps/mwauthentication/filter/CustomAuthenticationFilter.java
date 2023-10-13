@@ -67,10 +67,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .withExpiresAt(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
                 .withIssuer(request.getRequestURL().toString())
                 .sign(algorithm);
-//        response.setHeader("access_token",access_token);
-//        response.setHeader("refresh_token", refresh_token);
         access_token = encrypt(access_token);
-//        refresh_token = decrypt(refresh_token);
         Map<String,String> tokens =  new HashMap<>();
         tokens.put("access_token",access_token);
         tokens.put("refresh_token", refresh_token);
@@ -83,15 +80,12 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     private final String ALGO = "AES";
 
     private String encrypt(String jwt) throws Exception {
-
         keyValue = key.getBytes();
-
         Key key = new SecretKeySpec(keyValue, ALGO);
         Cipher c = Cipher.getInstance(ALGO);
         c.init(Cipher.ENCRYPT_MODE, key);
         byte[] encVal = c.doFinal(jwt.getBytes());
-        String encryptedValue = Base64.getEncoder().encodeToString(encVal);
-        return encryptedValue;
+        return Base64.getEncoder().encodeToString(encVal);
     }
 
     private String decrypt(String encryptedData) throws Exception {
@@ -100,7 +94,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         c.init(Cipher.DECRYPT_MODE, key);
         byte[] decodedValue = Base64.getDecoder().decode(encryptedData);
         byte[] decValue = c.doFinal(decodedValue);
-        String decryptedValue = new String(decValue);
-        return decryptedValue;
+        return new String(decValue);
     }
 }
